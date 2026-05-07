@@ -39,7 +39,7 @@ public class HelloWorld {
     }
 }
 ```
-Output
+# Output:
 Hello World! 
 
 <img width="861" height="371" alt="image" src="https://github.com/user-attachments/assets/1991f91e-bd7b-4d36-94b0-81a80936fd1a" />
@@ -67,8 +67,8 @@ Comment lines are not executed when the program runs.
 
 ```java
 // This is a comment
-
-Multi-line Comment
+```
+# Multi-line Comment
 /*
 This is a multi-line comment.
 This is useful for explaining larger sections of code.
@@ -191,9 +191,9 @@ public class Test {
         obj.display();
     }
 }
+```
 
-
-Output
+ # Output
 Main method started.
 GFG class is loaded by the JVM!
 Class loaded successfully.
