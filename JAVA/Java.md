@@ -8,7 +8,7 @@ Java is one of the most popular programming languages in the world. It is widely
 ---
 
 # Table of Contents
-
+### Java Basics
 - [1. What is Java?](#1-what-is-java)
 - [2. JVM, JDK, and JRE](#2-jvm-jdk-and-jre)
 - [3. Installing Java and Setting Up the Environment](#3-installing-java-and-setting-up-the-environment)
@@ -16,6 +16,18 @@ Java is one of the most popular programming languages in the world. It is widely
 - [5. Compilation vs Execution](#5-compilation-vs-execution)
 - [6. JVM Architecture](#6-jvm-architecture)
 - [7. Notes for Beginners](#7-notes-for-beginners)
+
+---
+
+### Syntax & Core Concepts
+
+- [1. Variables & Data Types](#1-variables--data-types)
+- [2. Operators](#2-operators)
+- [3. Type Casting](#3-type-casting)
+- [4. Control Flow](#4-control-flow)
+- [5. if, else, switch](#5-if-else-switch)
+- [6. Loops](#6-loops)
+- [7. break and continue](#7-break-and-continue)
 
 ---
 
@@ -40,8 +52,6 @@ Java is a high-level, object-oriented programming language developed by Sun Micr
 
 ## Core idea of Java
 Write code once, compile it into bytecode, and run it anywhere using the JVM.
-
-![Java basics](https://github.com/user-attachments/assets/ab78b301-9539-4ce0-b10e-c98d1b74e4be)
 
 </details>
 
@@ -194,8 +204,6 @@ This two-step process helps Java achieve portability and security. Bytecode can 
 | Role | Converts source to bytecode | Executes bytecode |
 | Component | Java compiler | JVM |
 
-![Compilation and execution](https://github.com/user-attachments/assets/ab78b301-9539-4ce0-b10e-c98d1b74e4be)
-
 </details>
 
 ---
@@ -262,12 +270,435 @@ Java becomes much easier when you understand a few simple ideas well. These note
 ## Final understanding
 If you understand Java basics, the role of JDK/JRE/JVM, the installation setup, the Hello World program, and the compilation-execution process, you already have a strong foundation for learning the rest of Java.
 
-![Java learning path](https://github.com/user-attachments/assets/f52b7044-8d3b-4261-9fe9-dba18e265680)
+</details>
+
+---
+# Java Basics: Syntax and Core Concepts
+
+
+Java is a high-level, object-oriented programming language used to build applications for desktop, web, Android, and enterprise systems. It is known for its clean syntax, portability, strong memory management, and powerful runtime environment.
+
+
+---
+
+<details>
+<summary><strong>1. Syntax & Core Concepts</strong></summary>
+
+Java syntax is the set of rules that defines how Java programs are written. A Java program is usually organized into classes and methods, and execution begins from the `main` method.
+
+## Basic structure of a Java program
+```java
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Hello, Java!");
+    }
+}
+```
+
+## Core syntax rules
+- Every Java program must be written inside a class.
+- The `main` method is the entry point of execution.
+- Statements usually end with a semicolon `;`.
+- Java is case-sensitive.
+- Braces `{}` define blocks of code.
+- A file containing a public class must have the same name as the class.
+
+## Important core concepts
+- **Class:** A blueprint for objects.
+- **Object:** An instance of a class.
+- **Method:** A block of code that performs a task.
+- **Statement:** A single instruction in a program.
+- **Block:** A group of statements enclosed in braces.
+
+## Example
+```java
+class Demo {
+    public static void main(String[] args) {
+        System.out.println("This is Java syntax.");
+    }
+}
+```
+
+## Why syntax matters
+Correct syntax allows the compiler to understand the program. Even a small mistake like a missing semicolon or wrong bracket can cause an error.
 
 </details>
 
 ---
 
-# End of Book
+<details>
+<summary><strong>2. Variables & Data Types</strong></summary>
 
-Java is one of the best languages for building a strong programming foundation. Once the basics are clear, moving into variables, operators, loops, methods, arrays, and object-oriented programming becomes much easier.
+Variables are used to store values in memory. In Java, every variable must have a data type, which tells the compiler what kind of value it will store.
+
+## What is a variable?
+A variable is a named memory location that holds data which can change during program execution.
+
+## Variable declaration
+```java
+int age = 20;
+String name = "Mounika";
+double salary = 45000.50;
+```
+
+## Types of variables
+- **Local variable:** Declared inside a method.
+- **Instance variable:** Declared inside a class but outside methods.
+- **Static variable:** Shared by all objects of a class.
+
+## Java data types
+Java data types are broadly divided into two categories:
+- **Primitive data types**
+- **Non-primitive data types**
+
+## Primitive data types
+- `byte`
+- `short`
+- `int`
+- `long`
+- `float`
+- `double`
+- `char`
+- `boolean`
+
+## Example
+```java
+int marks = 95;
+char grade = 'A';
+boolean passed = true;
+```
+
+## Non-primitive data types
+- `String`
+- Arrays
+- Classes
+- Interfaces
+
+## Why data types are important
+- They define the kind of value stored.
+- They determine memory usage.
+- They help prevent invalid operations.
+
+## Example with multiple variables
+```java
+class Student {
+    public static void main(String[] args) {
+        String studentName = "Anu";
+        int rollNumber = 101;
+        float percentage = 89.5f;
+        boolean isPresent = true;
+
+        System.out.println(studentName);
+    }
+}
+```
+
+</details>
+
+---
+
+<details>
+<summary><strong>3. Operators</strong></summary>
+
+Operators are symbols used to perform operations on variables and values. Java provides many types of operators, but the most common ones are arithmetic, logical, and bitwise operators.
+
+## Arithmetic operators
+These are used for mathematical calculations.
+
+- `+` Addition
+- `-` Subtraction
+- `*` Multiplication
+- `/` Division
+- `%` Modulus
+
+### Example
+```java
+int a = 10;
+int b = 3;
+System.out.println(a + b);
+System.out.println(a % b);
+```
+
+## Logical operators
+These are used to combine conditions.
+
+- `&&` Logical AND
+- `||` Logical OR
+- `!` Logical NOT
+
+### Example
+```java
+boolean x = true;
+boolean y = false;
+System.out.println(x && y);
+System.out.println(x || y);
+System.out.println(!x);
+```
+
+## Bitwise operators
+These operate at the bit level.
+
+- `&` Bitwise AND
+- `|` Bitwise OR
+- `^` Bitwise XOR
+- `~` Bitwise NOT
+- `<<` Left shift
+- `>>` Right shift
+
+### Example
+```java
+int a = 5;
+int b = 3;
+System.out.println(a & b);
+System.out.println(a | b);
+System.out.println(a << 1);
+```
+
+## Why operators matter
+Operators let you build expressions, compare values, and control program logic. They are used in calculations, conditions, loops, and many real-world programs.
+
+![Java operators](https://github.com/user-attachments/assets/ab8c4b2f-308c-4d06-b3eb-24d9c6c7fc0b)
+
+</details>
+
+---
+
+<details>
+<summary><strong>4. Type Casting</strong></summary>
+
+Type casting means converting one data type into another. In Java, this is useful when one type must be changed for calculation, storage, or compatibility.
+
+## Types of casting
+### Widening casting
+This happens automatically when a smaller type is converted into a larger type.
+
+```java
+int num = 100;
+double value = num;
+```
+
+### Narrowing casting
+This happens manually when a larger type is converted into a smaller type.
+
+```java
+double value = 9.78;
+int num = (int) value;
+```
+
+## Example
+```java
+class CastingDemo {
+    public static void main(String[] args) {
+        int a = 10;
+        double b = a;        // widening
+        double c = 12.5;
+        int d = (int) c;     // narrowing
+
+        System.out.println(b);
+        System.out.println(d);
+    }
+}
+```
+
+## Key points
+- Widening is safe and automatic.
+- Narrowing may cause data loss.
+- Explicit casting uses parentheses like `(int)`.
+
+## When to use it
+Type casting is useful in arithmetic expressions, handling user input, converting floating-point values to integers, and working with mixed data types.
+
+</details>
+
+---
+
+<details>
+<summary><strong>5. Control Flow</strong></summary>
+
+Control flow determines the order in which statements are executed. Java uses conditional statements and loops to control program behavior based on conditions.
+
+## Why control flow is important
+Programs often need to make decisions, repeat tasks, or stop execution under certain conditions. Control flow makes this possible.
+
+## Main control flow tools
+- `if`
+- `else`
+- `switch`
+- `for`
+- `while`
+- `do-while`
+- `break`
+- `continue`
+
+## Decision-making
+Java evaluates conditions and chooses which block of code to execute. This helps programs respond to different situations.
+
+## Repetition
+Loops allow a block of code to run multiple times until a condition changes.
+
+</details>
+
+---
+
+<details>
+<summary><strong>6. if, else, switch</strong></summary>
+
+These statements are used to make decisions in Java.
+
+## if statement
+The `if` statement runs a block only when the condition is true.
+
+```java
+int age = 18;
+if (age >= 18) {
+    System.out.println("Eligible to vote");
+}
+```
+
+## if-else statement
+The `else` block runs when the condition is false.
+
+```java
+int marks = 40;
+if (marks >= 50) {
+    System.out.println("Pass");
+} else {
+    System.out.println("Fail");
+}
+```
+
+## if-else-if ladder
+This is used when there are multiple conditions.
+
+```java
+int score = 75;
+if (score >= 90) {
+    System.out.println("A grade");
+} else if (score >= 75) {
+    System.out.println("B grade");
+} else {
+    System.out.println("C grade");
+}
+```
+
+## switch statement
+The `switch` statement is used when one variable can match many possible values.
+
+```java
+int day = 3;
+switch (day) {
+    case 1:
+        System.out.println("Monday");
+        break;
+    case 2:
+        System.out.println("Tuesday");
+        break;
+    case 3:
+        System.out.println("Wednesday");
+        break;
+    default:
+        System.out.println("Invalid day");
+}
+```
+
+## When to use what
+- Use `if` for simple conditions.
+- Use `if-else` for two outcomes.
+- Use `switch` when checking many fixed values.
+
+</details>
+
+---
+
+<details>
+<summary><strong>7. Loops</strong></summary>
+
+Loops repeat a block of code multiple times. Java supports three major loops: `for`, `while`, and `do-while`.
+
+## for loop
+The `for` loop is used when the number of iterations is known.
+
+```java
+for (int i = 1; i <= 5; i++) {
+    System.out.println(i);
+}
+```
+
+## while loop
+The `while` loop runs as long as the condition is true.
+
+```java
+int i = 1;
+while (i <= 5) {
+    System.out.println(i);
+    i++;
+}
+```
+
+## do-while loop
+The `do-while` loop executes at least once, even if the condition is false.
+
+```java
+int i = 1;
+do {
+    System.out.println(i);
+    i++;
+} while (i <= 5);
+```
+
+## Differences between loops
+- `for` is best when iterations are predictable.
+- `while` is useful when the condition controls repetition.
+- `do-while` is useful when the block must run at least once.
+
+## Example use case
+Loops are commonly used in menus, arrays, input validation, searching, and repeated calculations.
+
+</details>
+
+---
+
+<details>
+<summary><strong>8. break and continue</strong></summary>
+
+`break` and `continue` are loop control statements used to change the normal flow of loops.
+
+## break statement
+The `break` statement exits the loop immediately.
+
+```java
+for (int i = 1; i <= 5; i++) {
+    if (i == 3) {
+        break;
+    }
+    System.out.println(i);
+}
+```
+
+## continue statement
+The `continue` statement skips the current iteration and moves to the next one.
+
+```java
+for (int i = 1; i <= 5; i++) {
+    if (i == 3) {
+        continue;
+    }
+    System.out.println(i);
+}
+```
+
+## Difference
+- `break` stops the loop completely.
+- `continue` skips only one iteration.
+
+## Where they are useful
+- Exiting a loop when a target is found.
+- Skipping invalid or unwanted values.
+- Controlling nested or conditional loops.
+
+## Example in a real program
+If you are reading numbers and want to stop when a special value appears, use `break`. If you want to ignore one bad value and keep processing, use `continue`.
+
+</details>
+
+---
