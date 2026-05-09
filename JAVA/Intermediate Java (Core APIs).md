@@ -29,12 +29,12 @@
 ## Introduction to Strings
 Strings are fundamental in Java for handling text data. They represent sequences of characters and are used everywhere from user input to configuration files. Java provides three main classes for string manipulation: **String**, **StringBuilder**, and **StringBuffer**.
 
-![Java Strings overview](https://pplx-res.cloudinary.com/image/upload/v1/java-core/strings-overview-diagram.png)
+<img width="712" height="225" alt="image" src="https://github.com/user-attachments/assets/e685d5b3-77f9-425b-99f1-497eccd9fab7" />
 
 ## String Immutability
 Java Strings are **immutable**, meaning once created, their value cannot be changed. Any modification operation like `concat()` or `replace()` creates a **new String object**, leaving the original unchanged. This design ensures thread-safety and allows String objects to be cached in the **String pool**.
 
-![String immutability diagram](https://pplx-res.cloudinary.com/image/upload/v1/java-core/string-immutability.png)
+<img width="781" height="491" alt="image" src="https://github.com/user-attachments/assets/2370ac95-9e5d-4b5d-b9c7-84a5faed7f50" />
 
 Immutability provides security benefits as Strings are used in class loading and cannot be altered maliciously.
 
@@ -51,7 +51,8 @@ Immutability provides security benefits as Strings are used in class loading and
 
 **StringBuilder** (since Java 5) replaced StringBuffer in most cases due to better performance in single-threaded environments.
 
-![String vs StringBuilder vs StringBuffer comparison](https://pplx-res.cloudinary.com/image/upload/v1/java-core/strings-comparison-chart.png)
+<img width="638" height="479" alt="image" src="https://github.com/user-attachments/assets/0d418140-938d-47b4-87bb-2967f221471e" />
+
 
 ## String Class
 The **String class** is **final** and represents constant sequences of characters. It uses a `char[]` array internally but is immutable. Strings are stored in a **pool** for reuse.
@@ -92,7 +93,8 @@ All mutating methods are **synchronized**, adding overhead.
 | `split(String)` | Split by regex | `String[]` | `"a,b,c".split(",")` → ["a","b","c"] |
 | `concat(String)` | Append string | `String` | `"hello".concat(" world")` → "hello world" |
 
-![Common String methods visual guide](https://pplx-res.cloudinary.com/image/upload/v1/java-core/string-methods-cheatsheet.png)
+<img width="802" height="420" alt="image" src="https://github.com/user-attachments/assets/90be2b38-34d6-457c-9694-16e5ad4b1811" />
+
 
 ## Performance Comparison
 Using String concatenation in loops creates multiple objects, leading to high memory usage and GC pressure.
@@ -113,8 +115,6 @@ String result = sb.toString();
 ```
 
 **StringBuilder is ~10-100x faster** for heavy concatenation.
-
-![String concatenation performance comparison](https://pplx-res.cloudinary.com/image/upload/v1/java-core/string-performance-graph.png)
 
 ## Best Practices
 - ✅ Use **String literals** or pool for constants
@@ -149,7 +149,7 @@ public class StringDemo {
 ## Introduction to Arrays
 Arrays in Java are **fixed-size, homogeneous** data structures that store multiple values of the same type. They are **objects** stored on the heap with a **public final length field**. Arrays provide **O(1) random access** via indices starting from 0.
 
-![Java arrays memory layout](https://pplx-res.cloudinary.com/image/upload/v1/java-core/arrays-memory-diagram.png)
+<img width="900" height="500" alt="image" src="https://github.com/user-attachments/assets/acdbdd73-6b72-4c08-923c-e518a03b08a3" />
 
 Arrays are fundamental for collections, matrices, and tabular data.
 
@@ -175,7 +175,8 @@ for(int i=0; i<numbers.length; i++) {
 }
 ```
 
-![Single dimensional array visualization](https://pplx-res.cloudinary.com/image/upload/v1/java-core/single-dim-array.png)
+<img width="300" height="168" alt="image" src="https://github.com/user-attachments/assets/fb22f838-7210-48dd-9a66-3cdd3f4ac8e9" />
+
 
 **Length is fixed** after creation; use ArrayList for dynamic sizing.
 
@@ -195,7 +196,8 @@ int[][] matrix = {
 
 **Access:** `matrix[row][col]`
 
-![2D array matrix visualization](https://pplx-res.cloudinary.com/image/upload/v1/java-core/2d-array-matrix.png)
+<img width="1001" height="471" alt="image" src="https://github.com/user-attachments/assets/af6d3d39-ebe5-4221-b435-a61f1964e82b" />
+
 
 ## Jagged Arrays
 **Jagged arrays** have rows of **varying lengths** (arrays of arrays). They save memory for irregular data.
@@ -207,7 +209,8 @@ jagged = new int[]{3, 4, 5};[1]
 jagged = new int[]{6};[2]
 ```
 
-![Jagged array visualization](https://pplx-res.cloudinary.com/image/upload/v1/java-core/jagged-array.png)
+<img width="1262" height="776" alt="image" src="https://github.com/user-attachments/assets/6d1037be-4c09-4176-8dd1-22e365354e15" />
+
 
 Useful for **sparse matrices** or varying data sizes.
 
@@ -226,7 +229,6 @@ Useful for **sparse matrices** or varying data sizes.
 
 **Key benefits:** Simplified common tasks, optimized implementations.
 
-![Arrays utility class methods](https://pplx-res.cloudinary.com/image/upload/v1/java-core/arrays-utility-methods.png)
 
 ## Common Arrays Methods
 
