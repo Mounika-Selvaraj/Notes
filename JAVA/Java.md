@@ -28,6 +28,17 @@ Java is one of the most popular programming languages in the world. It is widely
 - [7. break and continue](#break-and-continue)
 
 ---
+## Methods
+1. [Introduction to Methods](#introduction-to-methods)
+2. [Method Creation](#method-creation)
+3. [Method Calling](#method-calling)
+4. [Parameters and Arguments](#parameters-and-arguments)
+5. [Return Types](#return-types)
+6. [Method Overloading](#method-overloading)
+7. [Rules and Important Points](#rules-and-important-points)
+8. [Examples](#examples)
+9. [Common Mistakes](#common-mistakes)
+10. [Quick Revision](#quick-revision)
 
 ## What is Java?
 
@@ -609,3 +620,311 @@ for (int i = 1; i <= 5; i++) {
 
 ### Example in a real program
 If you are reading numbers and want to stop when a special value appears, use `break`. If you want to ignore one bad value and keep processing, use `continue`.
+
+
+# Java Methods Notes
+
+![Java method declaration diagram](https://pplx-res.cloudinary.com/image/upload/pplx_search_images/4384ae3ebb571caec929ac6ed0b6825b8c9bda39.jpg)
+
+---
+
+## Introduction to Methods
+
+A **method** is a block of code that performs a specific task. Methods help make programs reusable, organized, and easier to read. In Java, methods can return a value or perform an action without returning anything. [web:5][web:9]
+
+Methods are very useful because the same logic can be written once and called many times from different parts of a program. This improves code reuse and reduces repetition. [web:3][web:5]
+
+---
+
+## Method Creation
+
+A method is created by writing its declaration and body.
+
+### Basic Syntax
+
+```java
+accessModifier returnType methodName(parameters) {
+    // body
+    return value; // only if returnType is not void
+}
+```
+
+### Example
+
+```java
+public int add(int a, int b) {
+    return a + b;
+}
+```
+
+### Parts of a Method
+
+- **Access modifier**: controls visibility, such as `public`, `private`, or `protected`.
+- **Return type**: tells what type of value the method gives back.
+- **Method name**: the name used to call the method.
+- **Parameters**: input values received by the method.
+- **Method body**: statements that perform the task. [web:3][web:9]
+
+---
+
+## Method Calling
+
+A method is called by using its name and passing arguments.
+
+### Example
+
+```java
+public class Demo {
+    public static void main(String[] args) {
+        Demo obj = new Demo();
+        int result = obj.add(10, 20);
+        System.out.println(result);
+    }
+
+    public int add(int a, int b) {
+        return a + b;
+    }
+}
+```
+
+### Calling Rules
+
+- The number and type of arguments must match the method definition.
+- The return value can be stored in a variable if the method returns something.
+- A `void` method is called for its action, not for a value. [web:5][web:9]
+
+### Visual Idea
+
+![Java method call sequence](https://pplx-res.cloudinary.com/image/upload/pplx_search_images/30888edbbbb87724ceef28363e6396883554c139.jpg)
+
+---
+
+## Parameters and Arguments
+
+Parameters and arguments are related but not the same.
+
+### Definitions
+
+- **Parameter**: a variable in the method declaration.
+- **Argument**: the actual value passed when the method is called. [web:3]
+
+### Example
+
+```java
+public void greet(String name) {   // parameter
+    System.out.println("Hello " + name);
+}
+
+greet("Mounika"); // argument
+```
+
+### Types of Parameters
+
+- **No parameters**: `printMessage()`
+- **Single parameter**: `square(int n)`
+- **Multiple parameters**: `add(int a, int b)`
+- **Different data types**: `show(String name, int age)` [web:3][web:2]
+
+### Important Point
+
+Java matches arguments with parameters by order, type, and count. If they do not match, the compiler shows an error. [web:5][web:3]
+
+---
+
+## Return Types
+
+The return type tells what the method sends back after execution.
+
+### `void` Return Type
+
+If a method does not return a value, its return type is `void`. Such methods only perform an action. [web:3][web:9]
+
+```java
+public void display() {
+    System.out.println("Hello");
+}
+```
+
+### Non-void Return Type
+
+If a method returns a value, the return type must match the value returned. [web:9]
+
+```java
+public int square(int n) {
+    return n * n;
+}
+```
+
+### Important Rules
+
+- A method declared with a non-void return type must include a `return` statement. [web:9]
+- The returned value must match the declared return type. [web:9]
+- Java also supports covariant return types in inheritance cases. [web:9]
+
+### Example
+
+```java
+public double average(int a, int b) {
+    return (a + b) / 2.0;
+}
+```
+
+---
+
+## Method Overloading
+
+Method overloading means having multiple methods with the same name in the same class, but with different parameter lists. This is a form of compile-time polymorphism. [web:1][web:2][web:5]
+
+### How to Overload
+
+You can overload a method by changing:
+- The number of parameters.
+- The data types of parameters.
+- The order of parameters. [web:2][web:7]
+
+### Example
+
+```java
+public class Calculator {
+    int add(int a, int b) {
+        return a + b;
+    }
+
+    int add(int a, int b, int c) {
+        return a + b + c;
+    }
+
+    double add(double a, double b) {
+        return a + b;
+    }
+}
+```
+
+### Calling Overloaded Methods
+
+```java
+Calculator c = new Calculator();
+System.out.println(c.add(5, 10));
+System.out.println(c.add(5, 10, 15));
+System.out.println(c.add(2.5, 3.5));
+```
+
+### Why It Is Useful
+
+- Improves readability.
+- Reuses the same method name for similar tasks.
+- Makes code easier to understand and maintain. [web:7][web:1]
+
+### Visual Idea
+
+![Method overloading in Java](https://pplx-res.cloudinary.com/image/upload/pplx_search_images/5718bd0f1b0e20db3595fe932611d311973274ae.jpg)
+
+---
+
+## Rules and Important Points
+
+- Method names can be the same only if parameter lists are different. [web:5][web:1]
+- Return type alone cannot be used to overload a method. [web:2][web:4][web:7]
+- Java decides which overloaded method to call at compile time. [web:1]
+- Methods inside a class help break a program into smaller reusable parts. [web:3][web:5]
+
+### Example of Invalid Overloading
+
+```java
+int test() {
+    return 5;
+}
+
+double test() {
+    return 5.5;
+}
+```
+
+This is invalid because the parameter list is the same; only the return type is different. [web:4][web:7]
+
+---
+
+## Examples
+
+### Example 1: Method Without Return Value
+
+```java
+public class Demo {
+    void show() {
+        System.out.println("Welcome to Java");
+    }
+
+    public static void main(String[] args) {
+        Demo d = new Demo();
+        d.show();
+    }
+}
+```
+
+### Example 2: Method With Parameters and Return Value
+
+```java
+public class Demo {
+    int multiply(int a, int b) {
+        return a * b;
+    }
+
+    public static void main(String[] args) {
+        Demo d = new Demo();
+        System.out.println(d.multiply(4, 5));
+    }
+}
+```
+
+### Example 3: Overloaded Methods
+
+```java
+public class Demo {
+    int sum(int a, int b) {
+        return a + b;
+    }
+
+    int sum(int a, int b, int c) {
+        return a + b + c;
+    }
+
+    public static void main(String[] args) {
+        Demo d = new Demo();
+        System.out.println(d.sum(10, 20));
+        System.out.println(d.sum(10, 20, 30));
+    }
+}
+```
+
+---
+
+## Common Mistakes
+
+- Confusing parameters with arguments. [web:3]
+- Forgetting to include a return statement in a non-void method. [web:9]
+- Trying to overload methods only by changing return type. [web:4][web:7]
+- Passing the wrong number or type of arguments. [web:5][web:3]
+
+---
+
+## Quick Revision
+
+### Method Creation
+A method is defined with a name, parameters, return type, and body. [web:3][web:5]
+
+### Method Calling
+A method is invoked using its name and arguments. [web:5]
+
+### Parameters and Return Types
+Parameters receive input values, and return types describe output values. If no value is returned, use `void`. [web:3][web:9]
+
+### Method Overloading
+Same method name, different parameter list, same class. Return type alone is not enough. [web:1][web:2][web:7]
+
+---
+
+## Summary Diagram
+
+![Java return flow diagram](https://pplx-res.cloudinary.com/image/upload/pplx_search_images/fabfd9c95a8b40234a9ac05803016536b61da4a9.jpg)
+
+Methods make code reusable and organized, and overloading allows one method name to handle multiple input styles. Java determines overloaded methods using the parameter list, not the return type. [web:5][web:9][web:1]
