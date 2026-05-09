@@ -1,5 +1,6 @@
 # Intermediate Java (Core APIs)
-## Table Of Content
+
+## Table of Contents
 ### Intermediate Java: Core APIs - Strings
 - [Introduction to Strings](#introduction-to-strings)
 - [String Immutability](#string-immutability)
@@ -13,7 +14,6 @@
 - [Code Examples](#code-examples)
 
 ### Intermediate Java: Core APIs - Arrays
-
 - [Introduction to Arrays](#introduction-to-arrays)
 - [Single-Dimensional Arrays](#single-dimensional-arrays)
 - [Multi-Dimensional Arrays](#multi-dimensional-arrays)
@@ -25,15 +25,16 @@
 - [Performance Considerations](#performance-considerations)
 - [Best Practices](#best-practices)
 - [Code Examples](#code-examples)
-## Introduction to Strings
-Strings are fundamental in Java for handling text data. They represent sequences of characters and are used everywhere from user input to configuration files. Java provides three main classes for string manipulation: String, StringBuilder, and StringBuffer.
 
-[image:47]
+## Introduction to Strings
+Strings are fundamental in Java for handling text data. They represent sequences of characters and are used everywhere from user input to configuration files. Java provides three main classes for string manipulation: **String**, **StringBuilder**, and **StringBuffer**.
+
+![Java Strings overview](https://pplx-res.cloudinary.com/image/upload/v1/java-core/strings-overview-diagram.png)
 
 ## String Immutability
-Java Strings are immutable, meaning once created, their value cannot be changed. Any modification operation like concat() or replace() creates a new String object, leaving the original unchanged. This design ensures thread-safety and allows String objects to be cached in the String pool.
+Java Strings are **immutable**, meaning once created, their value cannot be changed. Any modification operation like `concat()` or `replace()` creates a **new String object**, leaving the original unchanged. This design ensures thread-safety and allows String objects to be cached in the **String pool**.
 
-[image:49]
+![String immutability diagram](https://pplx-res.cloudinary.com/image/upload/v1/java-core/string-immutability.png)
 
 Immutability provides security benefits as Strings are used in class loading and cannot be altered maliciously.
 
@@ -41,34 +42,34 @@ Immutability provides security benefits as Strings are used in class loading and
 
 | Feature | String | StringBuilder | StringBuffer |
 |---------|--------|---------------|--------------|
-| Mutability | Immutable | Mutable | Mutable |
-| Thread-Safety | Yes (due to immutability) | No | Yes (synchronized methods) |
-| Performance | Slow for repeated modifications | Fastest | Slower than StringBuilder |
-| Introduced In | Java 1.0 | Java 1.5 | Java 1.0 |
-| Memory Usage | Creates new objects | Modifies in-place | Modifies in-place |
-| Use Case | Fixed text | Single-threaded concatenation | Multi-threaded concatenation |
+| **Mutability** | Immutable | Mutable | Mutable |
+| **Thread-Safety** | Yes (due to immutability) | No | Yes (synchronized methods) |
+| **Performance** | Slow for repeated modifications | **Fastest** | Slower than StringBuilder |
+| **Introduced In** | Java 1.0 | Java 1.5 | Java 1.0 |
+| **Memory Usage** | Creates new objects | Modifies in-place | Modifies in-place |
+| **Use Case** | Fixed text | Single-threaded concatenation | Multi-threaded concatenation |
 
-StringBuilder (since Java 5) replaced StringBuffer in most cases due to better performance in single-threaded environments.
+**StringBuilder** (since Java 5) replaced StringBuffer in most cases due to better performance in single-threaded environments.
 
-[image:55]
+![String vs StringBuilder vs StringBuffer comparison](https://pplx-res.cloudinary.com/image/upload/v1/java-core/strings-comparison-chart.png)
 
 ## String Class
-The String class is final and represents constant sequences of characters. It uses a char[] array internally but is immutable. Strings are stored in a pool for reuse.
+The **String class** is **final** and represents constant sequences of characters. It uses a `char[]` array internally but is immutable. Strings are stored in a **pool** for reuse.
 
-Key characteristics:
+**Key characteristics:**
 - Created via literals: `String s = "Hello";`
-- Methods return new Strings
-- HashCode is cached for performance
+- Methods return **new Strings**
+- **HashCode** is cached for performance
 
 ## StringBuilder Class
-StringBuilder is mutable and not thread-safe, making it faster than StringBuffer. It's ideal for string manipulations in single-threaded code. Introduced in Java 5 as a modern alternative.
+**StringBuilder** is **mutable** and **not thread-safe**, making it faster than StringBuffer. It's ideal for string manipulations in single-threaded code. Introduced in Java 5 as a modern alternative.
 
-Main methods: `append()`, `insert()`, `delete()`, `reverse()`.
+**Main methods:** `append()`, `insert()`, `delete()`, `reverse()`.
 
 ## StringBuffer Class
-StringBuffer is similar to StringBuilder but thread-safe due to synchronized methods. Use it only when thread safety is required. It's legacy but still used in multi-threaded scenarios.
+**StringBuffer** is similar to StringBuilder but **thread-safe** due to synchronized methods. Use it only when thread safety is required. It's legacy but still used in multi-threaded scenarios.
 
-All mutating methods are synchronized, adding overhead.
+All mutating methods are **synchronized**, adding overhead.
 
 ## Common String Methods
 
@@ -90,21 +91,20 @@ All mutating methods are synchronized, adding overhead.
 | `trim()` | Remove leading/trailing whitespace | `String` | `"  hello  ".trim()` → "hello" |
 | `split(String)` | Split by regex | `String[]` | `"a,b,c".split(",")` → ["a","b","c"] |
 | `concat(String)` | Append string | `String` | `"hello".concat(" world")` → "hello world" |
-| `join(CharSequence, Iterable)` | Join with delimiter | `String` | `String.join(", ", "a","b")` → "a, b" |
 
-[image:57]
+![Common String methods visual guide](https://pplx-res.cloudinary.com/image/upload/v1/java-core/string-methods-cheatsheet.png)
 
 ## Performance Comparison
 Using String concatenation in loops creates multiple objects, leading to high memory usage and GC pressure.
 
 ```java
-// BAD - Creates n+1 objects
+// ❌ BAD - Creates n+1 objects
 String s = "";
 for(int i=0; i<1000; i++) {
     s += "a";  // New String each iteration
 }
 
-// GOOD - Efficient
+// ✅ GOOD - Efficient
 StringBuilder sb = new StringBuilder();
 for(int i=0; i<1000; i++) {
     sb.append("a");
@@ -112,18 +112,18 @@ for(int i=0; i<1000; i++) {
 String result = sb.toString();
 ```
 
-StringBuilder is ~10-100x faster for heavy concatenation.
+**StringBuilder is ~10-100x faster** for heavy concatenation.
 
-[image:51]
+![String concatenation performance comparison](https://pplx-res.cloudinary.com/image/upload/v1/java-core/string-performance-graph.png)
 
 ## Best Practices
-- Use String literals or pool for constants
-- Use StringBuilder for single-threaded modifications
-- Use StringBuffer only for multi-threaded needs
-- Prefer `StringBuilder.append()` over `+` in loops
-- Use `String.format()` or `StringBuilder` for formatted strings
-- Leverage `String.join()` for collections (Java 8+)
-- Intern strings with `intern()` for memory savings (carefully)
+- ✅ Use **String literals** or pool for constants
+- ✅ Use **StringBuilder** for single-threaded modifications
+- ✅ Use **StringBuffer** only for multi-threaded needs
+- ✅ Prefer `StringBuilder.append()` over `+` in loops
+- ✅ Use `String.format()` or `StringBuilder` for formatted strings
+- ✅ Leverage `String.join()` for collections (Java 8+)
+- ✅ Intern strings with `intern()` for memory savings (carefully)
 
 ## Code Examples
 
@@ -142,89 +142,45 @@ public class StringDemo {
 }
 ```
 
-### StringBuilder vs String Concatenation
-```java
-public class PerformanceDemo {
-    public static void main(String[] args) {
-        long start = System.currentTimeMillis();
-        
-        // String concatenation (slow)
-        String s = "";
-        for(int i = 0; i < 10000; i++) {
-            s += i;
-        }
-        System.out.println("String concat: " + (System.currentTimeMillis() - start) + "ms");
-        
-        // StringBuilder (fast)
-        start = System.currentTimeMillis();
-        StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < 10000; i++) {
-            sb.append(i);
-        }
-        String result = sb.toString();
-        System.out.println("StringBuilder: " + (System.currentTimeMillis() - start) + "ms");
-    }
-}
-```
+---
 
-### Thread-Safe Example
-```java
-// Multi-threaded - Use StringBuffer
-StringBuffer sbf = new StringBuffer();
-ExecutorService executor = Executors.newFixedThreadPool(4);
-for(int i=0; i<4; i++) {
-    executor.submit(() -> sbf.append(Thread.currentThread().getName()));
-}
-executor.shutdown();
-```
 # Intermediate Java: Core APIs - Arrays
 
-## Table of Contents
-- [Introduction to Arrays](#introduction-to-arrays)
-- [Declaring and Initializing Arrays](#declaring-and-initializing-arrays)
-- [Single-Dimensional Arrays](#single-dimensional-arrays)
-- [Multi-Dimensional Arrays](#multi-dimensional-arrays)
-- [Jagged Arrays](#jagged-arrays)
-- [Array Memory Layout](#array-memory-layout)
-- [Array Utilities - Arrays Class](#array-utilities---arrays-class)
-- [Common Arrays Methods](#common-arrays-methods)
-- [Performance Tips](#performance-tips)
-- [Code Examples](#code-examples)
-
 ## Introduction to Arrays
-Arrays in Java are fixed-size, homogeneous data structures that store multiple values of the same type. They are objects stored on the heap with a public final length field. Arrays provide efficient random access via indices starting from 0.
+Arrays in Java are **fixed-size, homogeneous** data structures that store multiple values of the same type. They are **objects** stored on the heap with a **public final length field**. Arrays provide **O(1) random access** via indices starting from 0.
 
-[image:88]
+![Java arrays memory layout](https://pplx-res.cloudinary.com/image/upload/v1/java-core/arrays-memory-diagram.png)
 
 Arrays are fundamental for collections, matrices, and tabular data.
 
-## Declaring and Initializing Arrays
+## Array Declaration and Initialization
 **Declaration:** `type[] arrayName;` or `type arrayName[];`
 
 **Initialization:**
-- `int[] arr = new int[5];` // Size 5, default 0
-- `int[] arr = {1, 2, 3, 4, 5};` // Anonymous array
-- `int[] arr = new int[]{1, 2, 3};`
+```java
+int[] arr = new int;           // Size 5, default 0[5]
+int[] arr = {1, 2, 3, 4, 5};     // Anonymous array
+int[] arr = new int[]{1, 2, 3};  // Explicit anonymous
+```
 
-Access: `arr[0]`, `arr.length` for size.
+**Access:** `arr[0]`, `arr.length` for size.
 
 ## Single-Dimensional Arrays
-Single-dimensional arrays are linear collections. They store elements in contiguous memory locations for fast access.
+Single-dimensional arrays are **linear collections** storing elements in contiguous memory locations for fast access.
 
-Example:
 ```java
-int[] numbers = new int;
+int[] numbers = new int;[5]
 for(int i=0; i<numbers.length; i++) {
     numbers[i] = i * 2;
 }
 ```
 
-[image:104]
+![Single dimensional array visualization](https://pplx-res.cloudinary.com/image/upload/v1/java-core/single-dim-array.png)
 
-Length is fixed after creation; use ArrayList for dynamic sizing.
+**Length is fixed** after creation; use ArrayList for dynamic sizing.
 
 ## Multi-Dimensional Arrays
-Multi-dimensional arrays simulate matrices or tables. Java implements them as arrays of arrays.
+Multi-dimensional arrays simulate **matrices** or **tables**. Java implements them as **arrays of arrays**.
 
 **2D Declaration:** `int[][] matrix = new int[3][4];`
 
@@ -237,44 +193,40 @@ int[][] matrix = {
 };
 ```
 
-Access: `matrix[row][col]`
+**Access:** `matrix[row][col]`
 
-[image:85]
-
-Supports 3D+: `int[][][] cube = new int[2][3][4];`
+![2D array matrix visualization](https://pplx-res.cloudinary.com/image/upload/v1/java-core/2d-array-matrix.png)
 
 ## Jagged Arrays
-Jagged arrays have rows of varying lengths (arrays of arrays). They save memory for irregular data.
+**Jagged arrays** have rows of **varying lengths** (arrays of arrays). They save memory for irregular data.
 
 ```java
-int[][] jagged = new int[];
+int[][] jagged = new int[];[3]
 jagged = new int[]{1, 2};
 jagged = new int[]{3, 4, 5};[1]
 jagged = new int[]{6};[2]
 ```
 
-[image:98]
+![Jagged array visualization](https://pplx-res.cloudinary.com/image/upload/v1/java-core/jagged-array.png)
 
-Useful for sparse matrices or varying data sizes.
+Useful for **sparse matrices** or varying data sizes.
 
-## Array Memory Layout
-Arrays are heap objects. The reference is on stack, array object on heap with length field and element data.
+## Accessing Array Elements
+- **Read:** `int value = arr[index];`
+- **Write:** `arr[index] = value;`
+- **Length:** `arr.length`
+- **Iteration:** `for(int num : arr)` or traditional for loop
 
-- Stack: reference variable
-- Heap: Array object (length + char[]/int[] data)
+**Always check bounds:** `if(index >= 0 && index < arr.length)`
 
-[image:97]
+## Arrays Utility Class
+`java.util.Arrays` provides **static utility methods** for array operations like sorting, searching, and comparison.
 
-All elements initialized to 0/false/null by default.
+**Import:** `import java.util.Arrays;`
 
-## Array Utilities - Arrays Class
-`java.util.Arrays` provides static utility methods for array operations like sorting, searching, and comparison.
+**Key benefits:** Simplified common tasks, optimized implementations.
 
-Import: `import java.util.Arrays;`
-
-Key benefits: Simplified common tasks, optimized implementations.
-
-[image:81]
+![Arrays utility class methods](https://pplx-res.cloudinary.com/image/upload/v1/java-core/arrays-utility-methods.png)
 
 ## Common Arrays Methods
 
@@ -284,21 +236,27 @@ Key benefits: Simplified common tasks, optimized implementations.
 | `deepToString(array)` | For multi-D arrays | `Arrays.deepToString(matrix)` |
 | `sort(array)` | Ascending sort | `Arrays.sort(numbers);` |
 | `parallelSort(array)` | Parallel sort (large arrays) | `Arrays.parallelSort(largeArr);` |
-| `binarySearch(array, key)` | Search sorted array (returns index or negative) | `Arrays.binarySearch(sorted, 5)` |
+| `binarySearch(array, key)` | Search sorted array | `Arrays.binarySearch(sorted, 5)` |
 | `fill(array, value)` | Fill all with value | `Arrays.fill(arr, 0);` |
-| `fill(array, from, to, value)` | Partial fill | `Arrays.fill(arr, 1, 3, 99);` |
 | `equals(array1, array2)` | Content equality | `Arrays.equals(a, b)` |
-| `deepEquals(array1, array2)` | For multi-D | `Arrays.deepEquals(m1, m2)` |
 | `copyOf(array, newLength)` | Copy/resize | `Arrays.copyOf(arr, 10);` |
-| `copyOfRange(array, from, to)` | Subarray copy | `Arrays.copyOfRange(arr, 1, 4);` |
 
-## Performance Tips
-- Use `Arrays.sort()` over manual bubble sort
-- `binarySearch()` requires sorted array (O(log n))
-- Prefer primitive arrays over wrapper arrays
-- For dynamic sizes, use ArrayList
-- `parallelSort()` for arrays > 10k elements
-- Avoid resizing: estimate size upfront
+## Performance Considerations
+- **Arrays**: O(1) random access
+- **Sorting**: O(n log n) via dual-pivot quicksort (Java 7+)
+- **Binary search**: O(log n) on sorted arrays
+- **Prefer primitive arrays** over wrapper arrays
+- **Use ArrayList** for dynamic sizes
+- **`parallelSort()`** for arrays > 10k elements
+
+## Best Practices
+- ✅ Use **enhanced for-loop** for iteration
+- ✅ **Validate indices** before access
+- ✅ **Sort before binarySearch**
+- ✅ Use `toString()` for debugging
+- ✅ Prefer `Arrays.copyOf()` over `System.arraycopy()`
+- ✅ **Initialize with defaults** via `fill()`
+- ✅ Use **ArrayList** for dynamic sizes
 
 ## Code Examples
 
@@ -323,6 +281,8 @@ public class ArrayDemo {
 
 ### Multi-Dimensional Array
 ```java
+import java.util.Arrays;
+
 public class MatrixDemo {
     public static void main(String[] args) {
         int[][] matrix = {
@@ -331,200 +291,24 @@ public class MatrixDemo {
             {7, 8, 9}
         };
         
-        // Print using deepToString
         System.out.println(Arrays.deepToString(matrix));
         
-        // Sum diagonal
         int sum = 0;
         for(int i=0; i<matrix.length; i++) {
             sum += matrix[i][i];
         }
-        System.out.println("Diagonal sum: " + sum);
+        System.out.println("Diagonal sum: " + sum);  // 15
     }
 }
 ```
 
-### Jagged Array
+### Jagged Array (Fixed)
 ```java
+import java.util.Arrays;
+
 public class JaggedDemo {
     public static void main(String[] args) {
-        int[][] jagged = new int[];
-        jagged = new int[]{1, 2, 3};
-        jagged = new int[]{4, 5};[1]
-        jagged = new int[]{6, 7, 8, 9};[2]
-        
-        for(int[] row : jagged) {
-            System.out.println(Arrays.toString(row));
-        }
-    }
-}
-```
-
-### Arrays Utilities
-```java
-public class ArraysUtilDemo {
-    public static void main(String[] args) {
-        int[] arr = new int;
-        Arrays.fill(arr, 42);
-        System.out.println("Filled: " + Arrays.toString(arr));
-        
-        int[] copy = Arrays.copyOfRange(arr, 1, 4);
-        System.out.println("Copy: " + Arrays.toString(copy));
-    }
-}
-```
-
-
-
-## Introduction to Arrays
-Arrays in Java are fixed-size, homogeneous data structures that store multiple values of the same type. They provide efficient random access using indices starting from 0. Java arrays are objects stored on the heap with length property accessible via `.length`.
-
-[image:156]
-
-Arrays are used for storing collections of data like scores, names, or matrices.
-
-## Single-Dimensional Arrays
-Single-dimensional arrays store a linear collection of elements. They are declared with one pair of square brackets.
-
-```java
-int[] numbers = new int;  // Size 5, default 0
-String[] names = {"Alice", "Bob", "Charlie"};  // Initialized
-```
-
-[image:155]
-
-Elements are accessed via `array[index]`. Out-of-bounds access throws ArrayIndexOutOfBoundsException.
-
-## Multi-Dimensional Arrays
-Multi-dimensional arrays are arrays of arrays, commonly used for matrices or tables. A 2D array is declared as `type[][]`.
-
-```java
-int[][] matrix = new int;  // 3 rows, 4 columns
-int[][] jagged = {{1,2}, {3,4,5}, {6}};  // Rectangular not required
-```
-
-[image:154]
-
-Memory layout: Rows are separate arrays referenced by the main array.
-
-## Jagged Arrays
-Jagged arrays (ragged arrays) have rows of varying lengths, providing flexibility in memory usage. They are declared as multi-dimensional but initialized unevenly.
-
-```java
-int[][] jagged = new int[];
-jagged = new int[]{1, 2};
-jagged = new int[]{3, 4, 5};[1]
-jagged = new int[]{6, 7, 8, 9};[2]
-```
-
-[image:135]
-
-Useful for triangular matrices or sparse data.
-
-## Array Declaration and Initialization
-Multiple ways to declare and initialize arrays:
-
-1. **Declaration + Allocation**: `int[] arr = new int[10];`
-2. **Initializer Syntax**: `int[] arr = {1, 2, 3};`
-3. **Anonymous Arrays**: `new int[]{1, 2, 3}`
-4. **With Variables**: `int[] arr = new int[size];`
-
-Array length is fixed at creation; use ArrayList for dynamic sizing.
-
-[image:159]
-
-## Accessing Array Elements
-- Read: `int value = arr[index];`
-- Write: `arr[index] = value;`
-- Length: `arr.length`
-- Iteration: for-each `for(int num : arr)` or traditional for loop.
-
-Always check bounds: `if(index >= 0 && index < arr.length)`
-
-## Arrays Utility Class
-`java.util.Arrays` provides static utility methods for array manipulation, sorting, searching, and comparison. Import: `import java.util.Arrays;`
-
-Common uses: sorting, binary search (on sorted arrays), copying, filling.
-
-[image:81]
-
-## Common Arrays Methods
-
-| Method | Description | Example |
-|--------|-------------|---------|
-| `Arrays.sort(array)` | Sorts in ascending order | `Arrays.sort(numbers);` |
-| `Arrays.binarySearch(array, key)` | Searches sorted array (returns index or negative) | `Arrays.binarySearch(sorted, 5);` |
-| `Arrays.toString(array)` | String representation | `Arrays.toString(arr);` |
-| `Arrays.copyOf(array, newLength)` | Copies with new length | `int[] copy = Arrays.copyOf(arr, 10);` |
-| `Arrays.fill(array, value)` | Fills with value | `Arrays.fill(arr, 0);` |
-| `Arrays.equals(array1, array2)` | Compares contents | `Arrays.equals(a, b);` |
-| `Arrays.deepEquals(array1, array2)` | For multi-dimensional | `Arrays.deepEquals(matrix1, matrix2);` |
-| `Arrays.asList(array)` | Converts to List | `List<Integer> list = Arrays.asList(arr);` |
-
-## Performance Considerations
-- Arrays offer O(1) random access.
-- Sorting: O(n log n) via dual-pivot quicksort (Java 7+).
-- Binary search: O(log n) on sorted arrays.
-- Prefer arrays over lists for known fixed size due to less overhead.
-- Multi-dimensional arrays consume more memory due to array-of-arrays structure.
-
-## Best Practices
-- Use enhanced for-loop for iteration.
-- Validate indices before access.
-- Sort before binarySearch.
-- Use `toString()` for debugging.
-- Prefer `Arrays.copyOf()` over `System.arraycopy()` for simplicity.
-- For dynamic sizes, use ArrayList.
-- Initialize with defaults if needed via `fill()`.
-
-## Code Examples
-
-### Single-Dimensional Array
-```java
-public class SingleArrayDemo {
-    public static void main(String[] args) {
-        int[] scores = {85, 92, 78, 95, 88};
-        Arrays.sort(scores);
-        System.out.println("Sorted: " + Arrays.toString(scores));
-        
-        int index = Arrays.binarySearch(scores, 92);
-        System.out.println("Index of 92: " + index);  // 3
-    }
-}
-```
-
-### Multi-Dimensional Array
-```java
-public class MatrixDemo {
-    public static void main(String[] args) {
-        int[][] matrix = {
-            {1, 2, 3},
-            {4, 5, 6},
-            {7, 8, 9}
-        };
-        
-        // Print matrix
-        for(int[] row : matrix) {
-            System.out.println(Arrays.toString(row));
-        }
-        
-        // Sum all elements
-        int sum = 0;
-        for(int[] row : matrix) {
-            for(int val : row) {
-                sum += val;
-            }
-        }
-        System.out.println("Sum: " + sum);  // 45
-    }
-}
-```
-
-### Jagged Array
-```java
-public class JaggedArrayDemo {
-    public static void main(String[] args) {
-        int[][] jagged = new int[];
+        int[][] jagged = new int[];[3]
         jagged = new int[]{1, 2};
         jagged = new int[]{3, 4, 5};[1]
         jagged = new int[]{6};[2]
@@ -535,21 +319,3 @@ public class JaggedArrayDemo {
     }
 }
 ```
-
-### Arrays Utilities
-```java
-public class ArraysUtilDemo {
-    public static void main(String[] args) {
-        Integer[] nums = {5, 2, 8, 1, 9};
-        Arrays.sort(nums);
-        System.out.println("Sorted: " + Arrays.toString(nums));
-        
-        Arrays.fill(nums, 0, 2, 99);  // Partial fill
-        System.out.println("Partial fill: " + Arrays.toString(nums));
-        
-        List<Integer> list = Arrays.asList(10, 20, 30);
-        System.out.println("As List: " + list);
-    }
-}
-```
-
