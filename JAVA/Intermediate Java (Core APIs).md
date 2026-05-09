@@ -1,6 +1,6 @@
-# Intermediate Java: Core APIs - Strings
-
-## Table of Contents
+# Intermediate Java (Core APIs)
+## Table Of Content
+### Intermediate Java: Core APIs - Strings
 - [Introduction to Strings](#introduction-to-strings)
 - [String Immutability](#string-immutability)
 - [String vs StringBuilder vs StringBuffer](#string-vs-stringbuilder-vs-stringbuffer)
@@ -12,6 +12,19 @@
 - [Best Practices](#best-practices)
 - [Code Examples](#code-examples)
 
+### Intermediate Java: Core APIs - Arrays
+
+- [Introduction to Arrays](#introduction-to-arrays)
+- [Single-Dimensional Arrays](#single-dimensional-arrays)
+- [Multi-Dimensional Arrays](#multi-dimensional-arrays)
+- [Jagged Arrays](#jagged-arrays)
+- [Array Declaration and Initialization](#array-declaration-and-initialization)
+- [Accessing Array Elements](#accessing-array-elements)
+- [Arrays Utility Class](#arrays-utility-class)
+- [Common Arrays Methods](#common-arrays-methods)
+- [Performance Considerations](#performance-considerations)
+- [Best Practices](#best-practices)
+- [Code Examples](#code-examples)
 ## Introduction to Strings
 Strings are fundamental in Java for handling text data. They represent sequences of characters and are used everywhere from user input to configuration files. Java provides three main classes for string manipulation: String, StringBuilder, and StringBuffer.
 
@@ -361,4 +374,182 @@ public class ArraysUtilDemo {
 }
 ```
 
-Master arrays for efficient data handling. Transition to Collections for flexibility.
+
+
+## Introduction to Arrays
+Arrays in Java are fixed-size, homogeneous data structures that store multiple values of the same type. They provide efficient random access using indices starting from 0. Java arrays are objects stored on the heap with length property accessible via `.length`.
+
+[image:156]
+
+Arrays are used for storing collections of data like scores, names, or matrices.
+
+## Single-Dimensional Arrays
+Single-dimensional arrays store a linear collection of elements. They are declared with one pair of square brackets.
+
+```java
+int[] numbers = new int;  // Size 5, default 0
+String[] names = {"Alice", "Bob", "Charlie"};  // Initialized
+```
+
+[image:155]
+
+Elements are accessed via `array[index]`. Out-of-bounds access throws ArrayIndexOutOfBoundsException.
+
+## Multi-Dimensional Arrays
+Multi-dimensional arrays are arrays of arrays, commonly used for matrices or tables. A 2D array is declared as `type[][]`.
+
+```java
+int[][] matrix = new int;  // 3 rows, 4 columns
+int[][] jagged = {{1,2}, {3,4,5}, {6}};  // Rectangular not required
+```
+
+[image:154]
+
+Memory layout: Rows are separate arrays referenced by the main array.
+
+## Jagged Arrays
+Jagged arrays (ragged arrays) have rows of varying lengths, providing flexibility in memory usage. They are declared as multi-dimensional but initialized unevenly.
+
+```java
+int[][] jagged = new int[];
+jagged = new int[]{1, 2};
+jagged = new int[]{3, 4, 5};[1]
+jagged = new int[]{6, 7, 8, 9};[2]
+```
+
+[image:135]
+
+Useful for triangular matrices or sparse data.
+
+## Array Declaration and Initialization
+Multiple ways to declare and initialize arrays:
+
+1. **Declaration + Allocation**: `int[] arr = new int[10];`
+2. **Initializer Syntax**: `int[] arr = {1, 2, 3};`
+3. **Anonymous Arrays**: `new int[]{1, 2, 3}`
+4. **With Variables**: `int[] arr = new int[size];`
+
+Array length is fixed at creation; use ArrayList for dynamic sizing.
+
+[image:159]
+
+## Accessing Array Elements
+- Read: `int value = arr[index];`
+- Write: `arr[index] = value;`
+- Length: `arr.length`
+- Iteration: for-each `for(int num : arr)` or traditional for loop.
+
+Always check bounds: `if(index >= 0 && index < arr.length)`
+
+## Arrays Utility Class
+`java.util.Arrays` provides static utility methods for array manipulation, sorting, searching, and comparison. Import: `import java.util.Arrays;`
+
+Common uses: sorting, binary search (on sorted arrays), copying, filling.
+
+[image:81]
+
+## Common Arrays Methods
+
+| Method | Description | Example |
+|--------|-------------|---------|
+| `Arrays.sort(array)` | Sorts in ascending order | `Arrays.sort(numbers);` |
+| `Arrays.binarySearch(array, key)` | Searches sorted array (returns index or negative) | `Arrays.binarySearch(sorted, 5);` |
+| `Arrays.toString(array)` | String representation | `Arrays.toString(arr);` |
+| `Arrays.copyOf(array, newLength)` | Copies with new length | `int[] copy = Arrays.copyOf(arr, 10);` |
+| `Arrays.fill(array, value)` | Fills with value | `Arrays.fill(arr, 0);` |
+| `Arrays.equals(array1, array2)` | Compares contents | `Arrays.equals(a, b);` |
+| `Arrays.deepEquals(array1, array2)` | For multi-dimensional | `Arrays.deepEquals(matrix1, matrix2);` |
+| `Arrays.asList(array)` | Converts to List | `List<Integer> list = Arrays.asList(arr);` |
+
+## Performance Considerations
+- Arrays offer O(1) random access.
+- Sorting: O(n log n) via dual-pivot quicksort (Java 7+).
+- Binary search: O(log n) on sorted arrays.
+- Prefer arrays over lists for known fixed size due to less overhead.
+- Multi-dimensional arrays consume more memory due to array-of-arrays structure.
+
+## Best Practices
+- Use enhanced for-loop for iteration.
+- Validate indices before access.
+- Sort before binarySearch.
+- Use `toString()` for debugging.
+- Prefer `Arrays.copyOf()` over `System.arraycopy()` for simplicity.
+- For dynamic sizes, use ArrayList.
+- Initialize with defaults if needed via `fill()`.
+
+## Code Examples
+
+### Single-Dimensional Array
+```java
+public class SingleArrayDemo {
+    public static void main(String[] args) {
+        int[] scores = {85, 92, 78, 95, 88};
+        Arrays.sort(scores);
+        System.out.println("Sorted: " + Arrays.toString(scores));
+        
+        int index = Arrays.binarySearch(scores, 92);
+        System.out.println("Index of 92: " + index);  // 3
+    }
+}
+```
+
+### Multi-Dimensional Array
+```java
+public class MatrixDemo {
+    public static void main(String[] args) {
+        int[][] matrix = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+        };
+        
+        // Print matrix
+        for(int[] row : matrix) {
+            System.out.println(Arrays.toString(row));
+        }
+        
+        // Sum all elements
+        int sum = 0;
+        for(int[] row : matrix) {
+            for(int val : row) {
+                sum += val;
+            }
+        }
+        System.out.println("Sum: " + sum);  // 45
+    }
+}
+```
+
+### Jagged Array
+```java
+public class JaggedArrayDemo {
+    public static void main(String[] args) {
+        int[][] jagged = new int[];
+        jagged = new int[]{1, 2};
+        jagged = new int[]{3, 4, 5};[1]
+        jagged = new int[]{6};[2]
+        
+        for(int[] row : jagged) {
+            System.out.println("Row length: " + row.length + " - " + Arrays.toString(row));
+        }
+    }
+}
+```
+
+### Arrays Utilities
+```java
+public class ArraysUtilDemo {
+    public static void main(String[] args) {
+        Integer[] nums = {5, 2, 8, 1, 9};
+        Arrays.sort(nums);
+        System.out.println("Sorted: " + Arrays.toString(nums));
+        
+        Arrays.fill(nums, 0, 2, 99);  // Partial fill
+        System.out.println("Partial fill: " + Arrays.toString(nums));
+        
+        List<Integer> list = Arrays.asList(10, 20, 30);
+        System.out.println("As List: " + list);
+    }
+}
+```
+
