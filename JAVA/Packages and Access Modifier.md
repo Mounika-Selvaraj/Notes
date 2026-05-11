@@ -1,6 +1,4 @@
-# 🔹 Java Packages and Access Modifiers – Detailed Notes
-
-## Table of Contents
+# 🔹 Java Packages and Access Modifiers 
 
 - [1. What is a Java Package?](#1-what-is-a-java-package)
 - [2. Why Use Packages?](#2-why-use-packages)
