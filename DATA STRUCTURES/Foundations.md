@@ -535,10 +535,3 @@ For `sumArray` from earlier:
 | Binary search        | loop halving search space               | O(log n) time           |
 | Simple recursion     | factorial, recursive array sum          | O(n) time, O(n) space   |
 
----
-
-> ✏️ **Practice prompt:**  
-> Create a Java method that takes an `int[]` and returns `true` if the array contains a target value using:
-> 1) a simple linear scan (loop), and  
-> 2) binary search (assuming the array is sorted).  
-> For each version, what is the time complexity and why?
