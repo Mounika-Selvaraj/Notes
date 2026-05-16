@@ -1,450 +1,544 @@
-# 📘 Java Foundations for DSA: Programming Basics + Time & Space Complexity
+# Java DSA – Programming Basics & Complexity (Beginner)
+
+## Table of Contents
+- [1. Java Programming Basics](#1-java-programming-basics)
+  - [1.1 Variables and Types](#11-variables-and-types)
+  - [1.2 Operators and Expressions](#12-operators-and-expressions)
+  - [1.3 Control Flow: Loops and Conditionals](#13-control-flow-loops-and-conditionals)
+  - [1.4 Functions in Java (Methods)](#14-functions-in-java-methods)
+  - [1.5 Arrays](#15-arrays)
+  - [1.6 Strings](#16-strings)
+  - [1.7 Recursion Basics](#17-recursion-basics)
+- [2. Complexity Analysis and Big-O](#2-complexity-analysis-and-big-o)
+  - [2.1 Why Complexity?](#21-why-complexity)
+  - [2.2 Common Big-O Classes](#22-common-big-o-classes)
+  - [2.3 Time Complexity in Simple Java Code](#23-time-complexity-in-simple-java-code)
+  - [2.4 Space Complexity Basics](#24-space-complexity-basics)
+  - [2.5 Quick Complexity Reference Table](#25-quick-complexity-reference-table)
+
 ---
 
-## 📌 Table of Contents
-### Programming Basics
-1. [Java Program Structure](#1-java-program-structure)  
-2. [Variables, Data Types, and Operators](#2-variables-data-types-and-operators)  
-3. [Conditionals and Loops](#3-conditionals-and-loops)  
-4. [Functions / Methods in Java](#4-functions--methods-in-java)  
-5. [Arrays in Java](#5-arrays-in-java)  
-6. [Strings in Java](#6-strings-in-java)
+## 1. Java Programming Basics
 
-### Complexity Analysis
-1. [Time Complexity (Big‑O)](#7-time-complexity)  
-2. [Space Complexity](#8-space-complexity)  
-3. [Best, Average, Worst Case](#9-best-average-worst-case)  
-4. [Quick Reference Table](#10-quick-reference-table)
+### 1.1 Variables and Types
 
----
+In Java, every variable has:
 
-## 1. Java Program Structure
+- A **type** (what kind of data it holds)  
+- A **name**  
+- An optional **initial value**
 
-A minimal Java program has a **class** and a `main` method.
+General form:
 
 ```java
-public class DSAFoundations {
-    public static void main(String[] args) {
-        System.out.println("Hello, DSA!");
-    }
-}
+type name = value;
 ```
 
-- `public class DSAFoundations` → filename must be `DSAFoundations.java`.  
-- `public static void main(String[] args)` → entry point of the program.  
-- `System.out.println(...)` → prints to console.
+**Common primitive types:**
 
----
+- `int`   → integers (e.g., 10, -3)  
+- `long`  → larger integers  
+- `double` → decimal numbers  
+- `float` → smaller decimal numbers  
+- `char`  → single character (e.g., 'a')  
+- `boolean` → `true` or `false`  
+- `byte`, `short` → smaller integer ranges  
 
-## 2. Variables, Data Types, and Operators
+**Reference types:**
 
-### 2.1 Variables
-
-A variable is a named storage location that holds a value.
-
-```java
-int age = 25;
-double salary = 75000.50;
-char grade = 'A';
-boolean passed = true;
-String name = "Alice";
-```
-
-### 2.2 Primitive Data Types
-
-| Type      | Size (bytes) | Example                    |
-|-----------|--------------|---------------------------|
-| `byte`    | 1            | `byte b = 100;`           |
-| `short`   | 2            | `short s = 30000;`        |
-| `int`     | 4            | `int x = 1000000;`        |
-| `long`    | 8            | `long l = 1000000000L;`   |
-| `float`   | 4            | `float f = 1.5f;`         |
-| `double`  | 8            | `double d = 3.14159;`     |
-| `char`    | 2            | `char c = 'z';`           |
-| `boolean` | 1 bit (approx)| `boolean flag = true;`  |
-
-### 2.3 Operators
-
-Common operators in DSA:
-
-- Arithmetic: `+`, `-`, `*`, `/`, `%`
-- Relational: `==`, `!=`, `<`, `<=`, `>`, `>=`
-- Logical: `&&`, `||`, `!`
-- Assignment: `=`, `+=`, `-=`, `*=`, `/=`, `%=`
+- `String`, arrays (`int[]`), classes (`Scanner`, `ArrayList`, your own classes)
 
 Example:
 
 ```java
-int a = 10, b = 3;
-int sum = a + b;        // 13
-int rem = a % b;        // 1
-boolean check = a > b;  // true
+int age = 21;
+double price = 99.99;
+char grade = 'A';
+boolean isPassed = true;
+String name = "Mounika";
+```
+
+**Naming rules (recommended):**
+
+- Start with a letter or `_`
+- No spaces or special symbols (except `_` and digits after first character)
+- Use `camelCase` for variables, e.g., `totalMarks`
+
+---
+
+### 1.2 Operators and Expressions
+
+Operators combine variables and values to form **expressions**.
+
+**Arithmetic operators:**
+
+- `+`, `-`, `*`, `/`, `%`
+
+**Comparison operators:**
+
+- `==`, `!=`, `>`, `<`, `>=`, `<=`
+
+**Logical operators:**
+
+- `&&` (AND)  
+- `||` (OR)  
+- `!` (NOT)
+
+Example:
+
+```java
+int a = 5, b = 3;
+
+int sum = a + b;                    // 8
+boolean bigger = a > b;             // true
+boolean condition = (a > 2) && (b < 10); // true
 ```
 
 ---
 
-## 3. Conditionals and Loops
+### 1.3 Control Flow: Loops and Conditionals
 
-### 3.1 Conditionals
+#### If / else
 
 ```java
-int age = 18;
+int marks = 82;
 
-if (age > 18) {
-    System.out.println("Adult");
-} else if (age == 18) {
-    System.out.println("Just turned adult");
+if (marks >= 90) {
+    System.out.println("A");
+} else if (marks >= 75) {
+    System.out.println("B");
 } else {
-    System.out.println("Minor");
+    System.out.println("C or below");
 }
 ```
 
-### 3.2 Loops
+#### `for` loop
 
-#### 3.2.1 `for` loop
+Use when you know how many times to repeat.
 
 ```java
-// print 0 to 9
-for (int i = 0; i < 10; i++) {
-    System.out.print(i + " ");
+for (int i = 0; i < 5; i++) {
+    System.out.println("i = " + i);
 }
 ```
 
-- `for(init; condition; update)`
+#### `while` loop
 
-#### 3.2.2 `while` loop
+Use when you loop until a condition becomes false.
 
 ```java
 int i = 0;
-while (i < 10) {
-    System.out.print(i + " ");
+while (i < 5) {
+    System.out.println("i = " + i);
     i++;
 }
 ```
 
-#### 3.2.3 `do‑while` loop
+#### `do-while` loop
+
+Executes the body at least once.
 
 ```java
-int i = 0;
+int x = 0;
 do {
-    System.out.print(i + " ");
-    i++;
-} while (i < 10);
+    System.out.println(x);
+    x++;
+} while (x < 5);
 ```
-
-**DSA usage tip:**  
-Use `for` for arrays and fixed‑size iterations; use `while` for dynamic conditions.
 
 ---
 
-## 4. Functions / Methods in Java
+### 1.4 Functions in Java (Methods)
 
-Functions (called **methods**) help modularize code.
+In Java, functions are called **methods** and they belong to a class.
 
-### 4.1 Void method (no return)
+General form:
 
 ```java
-public static void greet(String name) {
-    System.out.println("Hello, " + name + "!");
+returnType methodName(parameterType1 p1, parameterType2 p2) {
+    // body
+    return someValue; // if returnType is not void
 }
-
-// usage
-greet("Mounika");
 ```
 
-### 4.2 Returning method
+Example: method that adds two integers
 
 ```java
-public static int square(int x) {
-    return x * x;
-}
+public class Main {
 
-// usage
-int result = square(5);  // 25
-```
+    public static int add(int a, int b) {
+        int sum = a + b;
+        return sum;
+    }
 
-### 4.3 Multiple parameters
-
-```java
-public static int max(int a, int b) {
-    if (a > b) {
-        return a;
-    } else {
-        return b;
+    public static void main(String[] args) {
+        int result = add(3, 4);
+        System.out.println(result);  // 7
     }
 }
 ```
 
-In DSA, you often write helpers like:
+Notes:
 
-```java
-public static int findMax(int[] arr) { ... }
-public static void reverseArray(int[] arr) { ... }
-public static boolean isPalindrome(String s) { ... }
-```
+- `void` → no return value  
+- Method parameters are **local** to that method  
+- `static` lets you call the method without creating an object of the class (handy for DSA practice)
 
 ---
 
-## 5. Arrays in Java
+### 1.5 Arrays
 
-Arrays store multiple values of the **same type** in fixed size.
+An array is a **fixed-size** sequence of elements of the **same type**.
 
-### 5.1 Declaration and Initialization
+Declaration and initialization:
 
 ```java
-// declare and create
-int[] arr = new int;[1]
-
-// declare and initialize with values
-int[] nums = {10, 20, 30, 40, 50};
-
-// access (index 0)
-arr = 100;
-System.out.println(nums);   // 10
+int[] arr = new int;              // all elements default to 0[1]
+int[] nums = {1, 2, 3, 4, 5};        // initialized with values
+String[] names = {"A", "B", "C"};
 ```
 
-### 5.2 Length and Iteration
+Accessing elements (0-based index):
 
 ```java
-int length = nums.length;   // 5
+int first = nums;                 // 1
+nums = 10;                        // change 3 → 10[2]
+int length = nums.length;            // 5
+```
 
-// traditional for‑loop
+Looping through an array:
+
+```java
 for (int i = 0; i < nums.length; i++) {
-    System.out.print(nums[i] + " ");
+    System.out.println(nums[i]);
 }
 
-// enhanced for‑loop (for‑each)
+// enhanced for loop
 for (int x : nums) {
-    System.out.print(x + " ");
+    System.out.println(x);
 }
 ```
 
-### 5.3 Arrays are mutable
+Key points:
+
+- Size is fixed when created  
+- Access by index (`arr[i]`) is constant-time (O(1))
+
+---
+
+### 1.6 Strings
+
+In Java:
+
+- `String` is a **class** (reference type)  
+- Strings are **immutable** → once created, the content cannot change; operations create new strings
+
+Creating strings:
 
 ```java
-nums = 999;   // element changes in place[2]
+String s1 = "hello";
+String s2 = new String("world");
+```
+
+Common operations:
+
+```java
+int len = s1.length();               // length
+char c = s1.charAt(0);               // 'h'
+String s3 = s1 + " " + s2;           // "hello world"
+boolean eq = s1.equals("hello");     // true
+String upper = s1.toUpperCase();     // "HELLO"
+String sub = s1.substring(1, 4);     // "ell"
+```
+
+Looping through characters:
+
+```java
+for (int i = 0; i < s1.length(); i++) {
+    char ch = s1.charAt(i);
+    System.out.println(ch);
+}
+```
+
+For heavy string modifications (e.g., in loops), use `StringBuilder`:
+
+```java
+StringBuilder sb = new StringBuilder();
+
+for (int i = 0; i < 5; i++) {
+    sb.append(i).append(" ");
+}
+
+String result = sb.toString();
+System.out.println(result);
 ```
 
 ---
 
-## 6. Strings in Java
+### 1.7 Recursion Basics
 
-`String` is an **object**, not a primitive.
+**Recursion**: a method that calls itself to solve a problem by reducing it to smaller subproblems.
 
-### 6.1 Declaration and Length
+Two critical parts:
 
-```java
-String s1 = "Hello";
-String s2 = new String("Hello");
+- **Base case** → when to stop recursing  
+- **Recursive case** → call the same method with a smaller/simpler input
 
-int len = s1.length();              // 5
-char c = s1.charAt(0);              // 'H'
-```
+#### Example: factorial
 
-### 6.2 Common Methods
+Mathematically:
 
-```java
-String s = "hello world";
+- `0! = 1`  
+- `n! = n * (n - 1)!` for `n > 0`
 
-System.out.println(s.toUpperCase());        // HELLO WORLD
-System.out.println(s.substring(0, 5));      // hello
-System.out.println(s.contains("world"));    // true
-System.out.println(s.replace("world", "DSA")); // hello DSA
-```
-
-### 6.3 Immutability
+Java code:
 
 ```java
-String s = "hi";
-s = s + " there";   // new String created
-```
+public class Main {
 
-### 6.4 String vs Array
+    public static int factorial(int n) {
+        if (n == 0) {          // base case
+            return 1;
+        }
+        return n * factorial(n - 1);  // recursive call
+    }
 
-| Feature        | Array                          | String                          |
-|----------------|---------------------------------|----------------------------------|
-| Type           | `int[]`, `char[]`              | `String` object                 |
-| Mutability     | Mutable (elements change)      | Immutable (no in‑place change)  |
-| Use case       | DSA containers (arr, stack)    | Text, substrings, sequences     |
-
-Conversion:
-
-```java
-String s = "abc";
-char[] chArr = s.toCharArray();
-```
-
----
-
-## 7. Time Complexity 
-
-Time complexity describes **how fast / slow** code runs as input size `n` grows.
-
-### 7.1 Key Big‑O Classes
-
-| Notation      | Name            | Growth with `n`              |
-|---------------|-----------------|------------------------------|
-| `O(1)`        | Constant        | Independent of `n`           |
-| `O(log n)`    | Logarithmic     | Very slow growth             |
-| `O(n)`        | Linear          | Directly proportional to `n` |
-| `O(n log n)`  | Linear‑log      | Common in sorting            |
-| `O(n²)`       | Quadratic       | Grows fast with `n`          |
-| `O(2ⁿ)`       | Exponential     | Very slow for large `n`      |
-
-### 7.2 Code Examples
-
-#### `O(1)` – Constant Time
-
-```java
-public static int getFirstElement(int[] arr) {
-    return arr;   // O(1)
+    public static void main(String[] args) {
+        System.out.println(factorial(5)); // 120
+    }
 }
 ```
 
-#### `O(log n)` – Binary Search
+#### Example: sum of array elements using recursion
+
+```java
+public class Main {
+
+    public static int sumArray(int[] arr, int index) {
+        if (index == arr.length) {   // base case: no elements left
+            return 0;
+        }
+        // current element + sum of the rest
+        return arr[index] + sumArray(arr, index + 1);
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {1, 2, 3, 4};
+        int sum = sumArray(nums, 0);
+        System.out.println(sum);   // 10
+    }
+}
+```
+
+This `sumArray` method:
+
+- Time complexity: O(n) (one call per element)  
+- Space complexity: O(n) (recursion stack frames)
+
+---
+
+## 2. Complexity Analysis and Big-O
+
+### 2.1 Why Complexity?
+
+**Complexity analysis** studies how:
+
+- **Running time** grows with input size `n` → *time complexity*  
+- **Memory usage** grows with input size `n` → *space complexity*
+
+**Big-O notation** describes an *upper bound* on growth, ignoring constants and lower-order terms.  
+It answers: “How does it scale when `n` becomes very large?”
+
+---
+
+### 2.2 Common Big-O Classes
+
+#### O(1) – Constant time
+
+Running time does **not** depend on input size.
+
+Examples:
+
+```java
+int x = arr;       // direct index access[1]
+int y = a + b;        // simple arithmetic
+```
+
+#### O(log n) – Logarithmic time
+
+Each step cuts the problem size by a constant factor (e.g., half).
+
+Example: **binary search** on a sorted array.
 
 ```java
 public static int binarySearch(int[] arr, int target) {
-    int left = 0, right = arr.length - 1;
+    int low = 0;
+    int high = arr.length - 1;
 
-    while (left <= right) {
-        int mid = (left + right) / 2;
+    while (low <= high) {
+        int mid = (low + high) / 2;
 
         if (arr[mid] == target) {
             return mid;
         } else if (arr[mid] < target) {
-            left = mid + 1;
+            low = mid + 1;
         } else {
-            right = mid - 1;
+            high = mid - 1;
         }
     }
-    return -1;   // O(log n)
+
+    return -1; // not found
 }
 ```
 
-#### `O(n)` – Linear Loop
+#### O(n) – Linear time
 
-```java
-public static int sumArray(int[] arr) {
-    int sum = 0;
-    for (int i = 0; i < arr.length; i++) {
-        sum += arr[i];
-    }
-    return sum;   // O(n)
-}
-```
+Work grows **directly** with `n`.
 
-#### `O(n²)` – Nested Loops
-
-```java
-public static void printAllPairs(int[] arr) {
-    for (int i = 0; i < arr.length; i++) {
-        for (int j = 0; j < arr.length; j++) {
-            System.out.println(arr[i] + " " + arr[j]);
-        }
-    }   // O(n²)
-}
-```
-
----
-
-## 8. Space Complexity
-
-Space complexity counts **extra memory** used as `n` grows.
-
-### 8.1 Examples
-
-#### `O(1)` – Constant Space
+Example: traverse an array once.
 
 ```java
 public static int sum(int[] arr) {
-    int sum = 0;
+    int s = 0;
     for (int i = 0; i < arr.length; i++) {
-        sum += arr[i];
+        s += arr[i];    // constant work inside loop
     }
-    return sum;   // only a few variables → O(1)
+    return s;           // total O(n)
 }
 ```
 
-#### `O(n)` – Linear Space
+#### O(n log n) – n log n time
+
+Appears in many **divide and conquer** algorithms and efficient sorting algorithms like `MergeSort` and average-case `QuickSort`.
+
+Very common in real-world DSA.
+
+#### O(n²) – Quadratic time
+
+Often from **nested loops** over the same input:
 
 ```java
-public static int[] copyArray(int[] arr) {
-    int n = arr.length;
-    int[] copy = new int[n];   // extra array of size n
-
-    for (int i = 0; i < n; i++) {
-        copy[i] = arr[i];
+for (int i = 0; i < n; i++) {
+    for (int j = 0; j < n; j++) {
+        // constant work
     }
-    return copy;   // O(n) extra space
 }
 ```
 
-#### `O(n²)` – Quadratic Space
+Examples: naive Bubble Sort, Selection Sort, Insertion Sort (worst case).
+
+#### Higher orders (usually bad for large n)
+
+- **O(2ⁿ)** – exponential time (many naive recursive solutions)  
+- **O(n!)** – factorial time (e.g., generating all permutations)
+
+---
+
+### 2.3 Time Complexity in Simple Java Code
+
+#### Example 1 – Array access
 
 ```java
-public static int[][] createMatrix(int n) {
-    int[][] matrix = new int[n][n];   // n×n space
-    return matrix;   // O(n²)
+int x = arr;  // O(1)[1]
+```
+
+#### Example 2 – Single loop
+
+```java
+for (int i = 0; i < n; i++) {
+    // O(1) work
 }
+// Total: O(n)
+```
+
+#### Example 3 – Nested loop
+
+```java
+for (int i = 0; i < n; i++) {
+    for (int j = 0; j < n; j++) {
+        // O(1) work
+    }
+}
+// Total: O(n^2)
+```
+
+#### Example 4 – Binary search (on sorted array)
+
+```java
+int low = 0;
+int high = arr.length - 1;
+
+while (low <= high) {
+    int mid = (low + high) / 2;
+
+    if (arr[mid] == target) {
+        // found
+        break;
+    } else if (arr[mid] < target) {
+        low = mid + 1;
+    } else {
+        high = mid - 1;
+    }
+}
+// Time: O(log n)
 ```
 
 ---
 
-## 9. Best, Average, Worst Case
+### 2.4 Space Complexity Basics
 
-### 9.1 Linear Search
+Space complexity measures **extra memory** used by the algorithm (besides input).
 
-```java
-public static int linearSearch(int[] arr, int target) {
-    for (int i = 0; i < arr.length; i++) {
-        if (arr[i] == target) {
-            return i;
-        }
-    }
-    return -1;
-}
-```
+Things that contribute:
 
-- **Best case**: `target` at index `0` → `O(1)`  
-- **Average case**: `target` in the middle → `O(n)`  
-- **Worst case**: `target` not present or at end → `O(n)`
+- Variables  
+- Extra arrays, collections  
+- Recursion stack frames  
 
-### 9.2 Binary Search
+Examples:
 
-```java
-public static int binarySearch(int[] arr, int target) {
-    int left = 0, right = arr.length - 1;
+- A loop using only a few variables:
 
-    while (left <= right) {
-        int mid = (left + right) / 2;
+  ```java
+  int s = 0;
+  for (int i = 0; i < n; i++) {
+      s += arr[i];
+  }
+  ```
 
-        if (arr[mid] == target) {
-            return mid;
-        } else if (arr[mid] < target) {
-            left = mid + 1;
-        } else {
-            right = mid - 1;
-        }
-    }
-    return -1;   // O(log n) in worst / average case
-}
-```
+  Space complexity: **O(1)** (constant extra space)
 
-- **Best case**: hit at first mid → `O(1)`  
-- **Worst / Average**: `log n` steps → `O(log n)`
+- Algorithm that creates a new array of size `n`:
+
+  ```java
+  int[] copy = new int[n];
+  ```
+
+  Space complexity: **O(n)**
+
+- Recursive function with maximum depth `n` and constant work per call → **O(n)** extra stack space.
+
+For `sumArray` from earlier:
+
+- Time: O(n)  
+- Space: O(n) (due to recursion depth)
 
 ---
 
-## 10. Quick Reference Table 
+### 2.5 Quick Complexity Reference Table
 
-| Concept                   | Java Code Snippet                             | Time Complexity | Space Complexity |
-|---------------------------|-----------------------------------------------|-----------------|------------------|
-| Access array element      | `arr[i]`                                      | O(1)            | O(1)             |
-| Single loop over array    | `for (int i = 0; i < n; i++)`                | O(n)            | O(1)             |
-| Nested loop over array    | two `for` loops over `n`                     | O(n²)           | O(1)             |
-| Binary search loop        | while with `mid` on sorted array             | O(log n)        | O(1)             |
-| Copy array                | `new int[n]` and fill in loop                | O(n)            | O(n)             |
-| Allocate 2D matrix        | `new int[n][n]`                              | O(1) to allocate| O(n²)            |
+| Concept              | Java Example / Idea                      | Typical Complexity      |
+|----------------------|------------------------------------------|-------------------------|
+| Array access         | `arr[i]`                                 | O(1) time, O(1) space   |
+| Full array traversal | `for (int x : arr)`                      | O(n) time, O(1) space   |
+| Nested loops on n    | double `for` over same array            | O(n²) time, O(1) space  |
+| Binary search        | loop halving search space               | O(log n) time           |
+| Simple recursion     | factorial, recursive array sum          | O(n) time, O(n) space   |
 
 ---
+
+> ✏️ **Practice prompt:**  
+> Create a Java method that takes an `int[]` and returns `true` if the array contains a target value using:
+> 1) a simple linear scan (loop), and  
+> 2) binary search (assuming the array is sorted).  
+> For each version, what is the time complexity and why?
